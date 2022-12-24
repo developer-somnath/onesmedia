@@ -29,7 +29,7 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
-            $table->enum('status', ['1','2','3']);	
+            $table->enum('status', ['0','1','3'])->default('1')->comment('0=active,1=active,3=deleted');	
             $table->timestamps();
         });
     }

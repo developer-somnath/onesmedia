@@ -5,7 +5,7 @@
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <meta http-equiv="Content-Language" content="en">
       <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-      <title>Tantuj Admin Control Panel - Admin Users.</title>
+      <title>Once Media Login</title>
       <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" />
       <meta name="description" content="ArchitectUI HTML Bootstrap 4 Dashboard Template">
       <meta name="msapplication-tap-highlight" content="no">
@@ -71,7 +71,7 @@
                                  <div class="d-flex align-items-center">
                                     <div class="mx-auto text-center">
                                        <div class="clearfix mb-4"></div>
-                                       <button class="btn btn-warning btn-lg">Login</button>
+                                       <button class="btn btn-warning btn-lg" type="submit">Login</button>
                                     </div>
                                  </div>
                               </form>

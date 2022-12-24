@@ -29,7 +29,9 @@ class User extends Authenticatable
         'country_id',
         'state_id',
         'email_verified_at',
-        'status'
+        'status',
+        'password',
+        
     ];
 
     /**

@@ -33,7 +33,7 @@ $(document).on('submit','.adminFrm',function(event) {
 	    					typeAnimated: true,
 						});
 						if(data.redirect != ''){
-						setTimeout(function(){ window.location.href=baseUrl+data.redirect }, 3000);
+						setTimeout(function(){ window.location.href=baseUrl+data.redirect }, 2000);
 							
 						}
 		    	}else{
@@ -397,6 +397,17 @@ $(".allowNumberDot").keyup(function () {
 });
 /* allow only letter & space */
 $(".allowOnlyLetter").keypress(function (event) {
+  var inputValue = event.charCode;
+  if (
+    !(inputValue >= 65 && inputValue <= 122) &&
+    
+    inputValue != 0 &&
+    inputValue != 49
+  ) {
+    event.preventDefault();
+  }
+});
+$(".allowOnlyLetterSpace").keypress(function (event) {
   var inputValue = event.charCode;
   if (
     !(inputValue >= 65 && inputValue <= 122) &&
