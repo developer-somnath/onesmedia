@@ -110,7 +110,8 @@
       $('#country_id').val("{{!is_null($oldData)?$oldData->country_id:''}}").change()
    })
    $(document).on('change','#country_id',function(){
-      $.ajax({
+      if($(this).val()!=""){
+         $.ajax({
          type:"post",
          url:"{{route('state-list-by-country-id')}}",
          data:{_token:_token,countryId:$(this).val()},
@@ -134,6 +135,7 @@
             }
          }
       })
+      }
    })
 </script>
 @endpush
