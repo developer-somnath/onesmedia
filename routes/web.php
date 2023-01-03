@@ -29,8 +29,12 @@ Route::middleware(['auth'])->group(function () {
         Route::get('edit/{id}', [UserManage::class, 'add'])->name('user-edit');
         Route::post('get-user-list', [UserManage::class, 'ajaxDataTable'])->name('ajax-user-list');
     });
-    Route::prefix('category')->group(function(){
+    Route::prefix('category-products')->group(function(){
         Route::get('list', [Category::class, 'index'])->name('category-list');
+        Route::get('add/{type}/{parentId}', [Category::class, 'add'])->name('category-add');
+        Route::get('edit/{type}/{parentId}/{id}', [Category::class, 'add'])->name('category-edit');
+        Route::post('create', [Category::class, 'create'])->name('category-create');
+
     });
     Route::post('generic-status-change-delete', [Authenticate::class, 'genericStatusChange'])->name('generic-status-change-delete');
     Route::post('state-list-by-country-id', [Authenticate::class, 'stateListByCountryId'])->name('state-list-by-country-id');
