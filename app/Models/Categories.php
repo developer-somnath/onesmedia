@@ -13,16 +13,7 @@ class Categories extends Model
         'image',
         'slug',
         'parent',
-        'phone',
-        'street_address',
-        'address_line_2',
-        'zip_code',
-        'city',
-        'country_id',
-        'state_id',
-        'email_verified_at',
-        'status',
-        'password',
+        'status'
         
     ];
 }

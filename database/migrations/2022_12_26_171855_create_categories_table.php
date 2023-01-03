@@ -18,7 +18,7 @@ class CreateCategoriesTable extends Migration
             $table->string('name');
             $table->string('slug');
             $table->string('image');
-            $table->string('parent')->comment('0=Parent,1=Sub-category');
+            $table->tinyInteger('parent')->comment('0=Parent,1=Sub-category');
             $table->enum('status', ['0','1','3'])->default('1')->comment('0=active,1=active,3=deleted');	
             $table->timestamps();
         });

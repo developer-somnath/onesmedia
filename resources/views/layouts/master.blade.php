@@ -143,13 +143,13 @@
                            </a>
                         </li>
                         <li>
-                           <a href="category.html">
+                           <a href="{{ route('category-list') }}">
                            <i class="fa-solid fa-cart-shopping metismenu-icon"></i>
                            Categories
                            </a>
                         </li>
                         <li>
-                           <a href="{{route('logout')}}">
+                           <a href="{{ route('logout') }}">
                            <i class="fa-solid fa-arrow-right-from-bracket metismenu-icon"></i>
                            Logout
                            </a>

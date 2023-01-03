@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Authenticate;
 use App\Http\Controllers\Dashboard;
 use App\Http\Controllers\UserManage;
+use App\Http\Controllers\Category;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,8 +28,9 @@ Route::middleware(['auth'])->group(function () {
         Route::get('add', [UserManage::class, 'add'])->name('user-add');
         Route::get('edit/{id}', [UserManage::class, 'add'])->name('user-edit');
         Route::post('get-user-list', [UserManage::class, 'ajaxDataTable'])->name('ajax-user-list');
-        
-        
+    });
+    Route::prefix('category')->group(function(){
+        Route::get('list', [Category::class, 'index'])->name('category-list');
     });
     Route::post('generic-status-change-delete', [Authenticate::class, 'genericStatusChange'])->name('generic-status-change-delete');
     Route::post('state-list-by-country-id', [Authenticate::class, 'stateListByCountryId'])->name('state-list-by-country-id');
