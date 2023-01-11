@@ -34,7 +34,7 @@ class ShowManage extends Controller
                     $sampleFileOriginalName = NULL;
                     if($request->hasFile('sample_file')):
                         $sampleFile = (time()+15).'.'.$request->file('sample_file')->extension();
-                        $sampleFileOriginalName = (time()+15).'.'.$request->file('sample_file')->getClientOriginalName();
+                        $sampleFileOriginalName = $request->file('sample_file')->getClientOriginalName();
                         $request->file('sample_file')->move(public_path('uploads/categories/'.($categoryRecord->slug)), $sampleFile);
                     endif;
                     $showInserted = Shows::create([
@@ -49,19 +49,16 @@ class ShowManage extends Controller
                         "sample_file"                       => $sampleFile,
                         "sample_file_original_name"         => $sampleFileOriginalName
                     ]);
-                    // dd($showInserted);
-                    // dd(\DB::getQueryLog());
-
                     $audioFiles = [];
-                    if($request->hasfile('filenames')):
-                        foreach($request->file('filenames') as $file):
+                    if($request->hasfile('audio_files')):
+                        foreach($request->file('audio_files') as $file):
                             $name = time().rand(1,100).'.'.$file->extension();
                             $originalFileName = $file->getClientOriginalName();
                             $file->move(public_path('uploads/categories/'.($categoryRecord->slug)), $name);  
                             $audioFiles[] = [
                                 'shows_id'=>$showInserted->id,
                                 'file_original_name'=>$originalFileName,
-                                'file_name'=>$file,
+                                'file_name'=>$name,
                             ];
                         endforeach;
                     endif;
@@ -69,49 +66,49 @@ class ShowManage extends Controller
                     return response()->json([
                             'status'=>TRUE,
                             'message'=>'Show created successfully!',
-                            'redirect'=>'category/show-list',
+                            'redirect'=>'category/show-list?categoryId='.$request->input('categoryId'),
                         ]);
                 else:
-                   if(Shows::whereRaw("LOWER(`name`) = '".strtolower($request->input('name'))."'")->where('status','!=',3)->where('id','<>',$request->input('updateId'))->exists()):
+                   if(Shows::whereRaw("LOWER(`title`) = '".strtolower($request->input('title'))."'")->where('status','!=',3)->where('id','<>',$request->input('updateId'))->exists()):
                         return response()->json([
                             'status'=>FALSE,
                             'message'=>'Category already exists!',
                             'redirect'=>'',
                         ]);
                     endif;
-                    $image = NULL;
-                    if($request->hasFile('image')):
-                        $image = (time()+10).'.'.$request->file('image')->extension();
-                        $request->file('image')->move(public_path('uploads/categories/'.($categoryRecord->slug)), $image);
-                    endif;
-                    $sampleFile = NULL;
-                    $sampleFileOriginalName = NULL;
-                    if($request->hasFile('sample_file')):
-                        $sampleFile = (time()+15).'.'.$request->file('sample_file')->extension();
-                        $sampleFileOriginalName = (time()+15).'.'.$request->file('sample_file')->getClientOriginalName();
-                        $request->file('sample_file')->move(public_path('uploads/categories/'.($categoryRecord->slug)), $sampleFile);
-                    endif;
-                    Shows::find($request->input('updateId'))->update([
+                    $updateData = [
                         "title"                             => $request->input('title'),
                         "description"                       => $request->input('description'),
                         "no_of_episodes"                    => $request->input('no_of_episodes'),
                         "no_of_mp3_cds"                     => $request->input('no_of_mp3_cds'),
                         "instant_download_price"            => $request->input('instant_download_price'),
                         "mp3_cd_price"                      => $request->input('mp3_cd_price'),
-                        "image"                             => $image,
-                        "sample_file"                       => $sampleFile,
-                        "sample_file_original_name"         => $sampleFileOriginalName
-                    ]);
+                        
+                    ];
+                    $image = NULL;
+                    if($request->hasFile('image')):
+                        $updateData['image'] = (time()+10).'.'.$request->file('image')->extension();
+                        $request->file('image')->move(public_path('uploads/categories/'.($categoryRecord->slug)), $image);
+                    endif;
+                    $sampleFile = NULL;
+                    $sampleFileOriginalName = NULL;
+                    if($request->hasFile('sample_file')):
+                        $updateData['sample_file'] = (time()+15).'.'.$request->file('sample_file')->extension();
+                        $updateData['sample_file_original_name'] = $request->file('sample_file')->getClientOriginalName();
+                        $request->file('sample_file')->move(public_path('uploads/categories/'.($categoryRecord->slug)), $sampleFile);
+                    endif;
+                    // dd($updateData);
+                    Shows::find($request->input('updateId'))->update($updateData);
                     $audioFiles = [];
-                    if($request->hasfile('filenames')):
-                        foreach($request->file('filenames') as $file):
+                    if($request->hasfile('audio_files')):
+                        foreach($request->file('audio_files') as $file):
                             $name = time().rand(1,100).'.'.$file->extension();
                             $originalFileName = $file->getClientOriginalName();
                             $file->move(public_path('uploads/categories/'.($categoryRecord->slug)), $name);  
                             $audioFiles[] = [
                                 'shows_id'=>$request->input('updateId'),
                                 'file_original_name'=>$originalFileName,
-                                'file_name'=>$file,
+                                'file_name'=>$name,
                             ];
                         endforeach;
                     endif;
@@ -119,7 +116,7 @@ class ShowManage extends Controller
                     return response()->json([
                             'status'=>TRUE,
                             'message'=>'Show Updated successfully!',
-                            'redirect'=>'category/show-list',
+                            'redirect'=>'category/show-list?categoryId='.$request->input('categoryId'),
                         ]); 
                 endif;
             else:
@@ -168,7 +165,7 @@ class ShowManage extends Controller
                 else:
                     $status='<a href="javascript:void(0)" id="'.($value->id).'" data-table="shows" data-status="1" data-key="id" data-id="'.($value->id).'" class="badge badge-danger change-status">InActive</a>';
                 endif;
-                $action = '<a href="'.(url("user/edit/".$value->id)).'" class="btn btn-info"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                $action = '<a href="'.(url("category/show-edit/".$value->id."?categoryId=".$request->input('categoryId'))).'" class="btn btn-info"><i class="fa fa-pencil" aria-hidden="true"></i></a>
                     <a href="javascript:void(0)" id="'.($value->id).'" data-table="shows" data-status="3" data-key="id" data-id="'.($value->id).'" class="btn btn-danger change-status"><i class="fa fa-trash" aria-hidden="true"></i></a>';
                 $image='';
                 if($value->image && $value->image !=''):
@@ -176,9 +173,9 @@ class ShowManage extends Controller
                 endif;
                 $tempArr[]=[
                     'id'=>($key+1),
-                    'title'=>'<a href="'.(route('category-list')).'?categoryId='.($value->id).'"><img src="'.(asset('assets/images/folder.png')).'">'.($value->name).'</a>',
+                    'title'=>$value->title,
                     'image'=>$image,
-                    'description'=>$value->description,
+                    'description'=>substr(strip_tags($value->description),0,100),
                     'no_of_episodes'=>$value->no_of_episodes,
                     'status'=>$status,
                     'action'=>$action
@@ -192,7 +189,7 @@ class ShowManage extends Controller
                  ]);
         endif;
     }
-    public function add($categortId='',$id='')
+    public function add($id='',Request $request)
     {
         if(!empty($id)):
             $title="Show Edit";
@@ -201,7 +198,7 @@ class ShowManage extends Controller
             $title="Show Add";
             $oldData = NULL;
         endif;
-        
-        return view('pages.show.add',compact('oldData','title'));
+        $categoryRecord=Categories::find($request->input('categoryId'));
+        return view('pages.show.add',compact('oldData','title','categoryRecord'));
     }
 }

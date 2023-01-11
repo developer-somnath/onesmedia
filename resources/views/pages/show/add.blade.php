@@ -23,7 +23,7 @@
                   <div class="col-md-6">
                      <div class="position-relative form-group">
                         <label style="">Show Title</label>
-                        <input name="title" id="title" placeholder="Enter Show Title" type="text" class="form-control requiredCheck" data-check="Show Title" value="{{!is_null($oldData)?$oldData->name:''}}">
+                        <input name="title" id="title" placeholder="Enter Show Title" type="text" class="form-control requiredCheck" data-check="Show Title" value="{{!is_null($oldData)?$oldData->title:''}}">
                      </div>
                   </div>
                   <div class="col-md-6">
@@ -32,7 +32,7 @@
                         
                         <input name="image" id="image" type="file" class="form-control" data-check="Show Image" accept="image/*">
                         @if(!is_null($oldData) && $oldData->image!='')
-                        <img src="{{ asset('uploads/categories/'.$oldData->slug.'/'.$oldData->image) }}" width="180" height="150">
+                        <img src="{{ asset('uploads/categories/'.$categoryRecord->slug.'/'.$oldData->image) }}" width="180" height="150">
                         @endif
                      </div>
                   </div> 
@@ -70,11 +70,11 @@
                   <div class="col-md-6">
                      <div class="position-relative form-group">
                         <label class="m">Sample File</label>
-                        <input name="sample_file" id="sample_file" type="file" class="form-control {{(!is_null($oldData) && $oldData->file!='' )?'':'requiredCheck'}}" data-check="Sample File" accept="audio/*">
+                        <input name="sample_file" id="sample_file" type="file" class="form-control {{(!is_null($oldData) && $oldData->sample_file!='' )?'':'requiredCheck'}}" data-check="Sample File" accept="audio/*">
                         @if(!is_null($oldData))
                            <audio controls >
-                              <source src="{{ asset('uploads/categories/'.$oldData->slug.'/'.$oldData->sample_file) }}" type="audio/ogg">
-                              <source src="{{ asset('uploads/categories/'.$oldData->slug.'/'.$oldData->sample_file) }}" type="audio/mpeg">
+                              <source src="{{ asset('uploads/categories/'.$categoryRecord->slug.'/'.$oldData->sample_file) }}" type="audio/ogg">
+                              <source src="{{ asset('uploads/categories/'.$categoryRecord->slug.'/'.$oldData->sample_file) }}" type="audio/mpeg">
                            Your browser does not support the audio element.
                            </audio>
                         @endif
@@ -83,14 +83,14 @@
                   <div class="col-md-6">
                      <div class="position-relative form-group">
                         <label class="m">Upload File</label>
-                        <input name="audio_files[]" multiple id="audio_files" type="file" class="form-control {{(!is_null($oldData) && $oldData->file!='' )?'':'requiredCheck'}}" data-check="Upload File" accept="audio/*">
-                        @if(!is_null($oldData))
+                        <input name="audio_files[]" multiple id="audio_files" type="file" class="form-control " data-check="Upload File" accept="audio/*">
+                        {{-- @if(!is_null($oldData))
                            <audio controls >
                               <source src="{{ asset('uploads/categories/'.$oldData->slug.'/'.$oldData->file) }}" type="audio/ogg">
                               <source src="{{ asset('uploads/categories/'.$oldData->slug.'/'.$oldData->file) }}" type="audio/mpeg">
                            Your browser does not support the audio element.
                            </audio>
-                        @endif
+                        @endif --}}
                      </div>
                   </div>
                </div>
