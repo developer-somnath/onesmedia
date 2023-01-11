@@ -5,6 +5,7 @@ use App\Http\Controllers\Authenticate;
 use App\Http\Controllers\Dashboard;
 use App\Http\Controllers\UserManage;
 use App\Http\Controllers\Category;
+use App\Http\Controllers\ShowManage;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,12 +30,15 @@ Route::middleware(['auth'])->group(function () {
         Route::get('edit/{id}', [UserManage::class, 'add'])->name('user-edit');
         Route::post('get-user-list', [UserManage::class, 'ajaxDataTable'])->name('ajax-user-list');
     });
-    Route::prefix('category-products')->group(function(){
-        Route::get('list', [Category::class, 'index'])->name('category-list');
-        Route::get('add/{type}/{parentId}', [Category::class, 'add'])->name('category-add');
-        Route::get('edit/{type}/{parentId}/{id}', [Category::class, 'add'])->name('category-edit');
-        Route::post('create', [Category::class, 'create'])->name('category-create');
-
+    Route::prefix('category')->group(function(){
+        Route::match(['get','post'],'list', [Category::class, 'index'])->name('category-list');
+        Route::get('add', [Category::class, 'add'])->name('category-add');
+        Route::get('edit/{id}', [Category::class, 'add'])->name('category-edit');
+        Route::get('ajax-category-list', [Category::class, 'ajaxDataTable'])->name('ajax-category-list');
+        Route::get('ajax-show-list', [ShowManage::class, 'ajaxDataTable'])->name('ajax-show-list');
+        Route::match(['get','post'],'show-list', [ShowManage::class, 'index'])->name('show-list');
+        Route::get('show-add', [ShowManage::class, 'add'])->name('show-add');
+        Route::get('show-edit/{id}', [ShowManage::class, 'add'])->name('show-edit');
     });
     Route::post('generic-status-change-delete', [Authenticate::class, 'genericStatusChange'])->name('generic-status-change-delete');
     Route::post('state-list-by-country-id', [Authenticate::class, 'stateListByCountryId'])->name('state-list-by-country-id');

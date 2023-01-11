@@ -145,7 +145,7 @@
                         <li>
                            <a href="{{ route('category-list') }}">
                            <i class="fa-solid fa-cart-shopping metismenu-icon"></i>
-                           Categories/Products
+                           Categories/Shows
                            </a>
                         </li>
                         <li>

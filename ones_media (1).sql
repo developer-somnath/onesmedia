@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 10, 2023 at 05:21 AM
+-- Generation Time: Jan 11, 2023 at 06:27 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -20,6 +20,21 @@ SET time_zone = "+00:00";
 --
 -- Database: `ones_media`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `audio_files`
+--
+
+CREATE TABLE `audio_files` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `shows_id` bigint(20) UNSIGNED NOT NULL,
+  `file_original_name` varchar(255) DEFAULT NULL,
+  `file_name` varchar(255) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -48,34 +63,28 @@ CREATE TABLE `cache_locks` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `category_and_products`
+-- Table structure for table `categories`
 --
 
-CREATE TABLE `category_and_products` (
+CREATE TABLE `categories` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) NOT NULL,
   `slug` varchar(255) DEFAULT NULL,
-  `orginal_file_name` varchar(255) DEFAULT NULL,
-  `file` varchar(255) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
   `image` varchar(255) DEFAULT NULL,
-  `price` decimal(12,2) DEFAULT NULL,
-  `quantity` int(11) DEFAULT NULL,
-  `description` longtext DEFAULT NULL,
-  `parent` tinyint(4) NOT NULL DEFAULT 0 COMMENT '0=Parent,1=Sub-category',
-  `type` enum('F','C') NOT NULL DEFAULT 'C' COMMENT 'F=File,C=Category',
+  `parent` int(11) NOT NULL DEFAULT 0 COMMENT '0=category,parent>0 = subcategory',
   `status` enum('0','1','3') NOT NULL DEFAULT '1' COMMENT '0=active,1=active,3=deleted',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `category_and_products`
+-- Dumping data for table `categories`
 --
 
-INSERT INTO `category_and_products` (`id`, `name`, `slug`, `orginal_file_name`, `file`, `image`, `price`, `quantity`, `description`, `parent`, `type`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'Adventure', 'adventure', NULL, NULL, '1672776046.png', NULL, NULL, '<h2>What is Lorem Ipsum?</h2>\r\n\r\n<p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\r\n\r\n<h2>Why do we use it?</h2>\r\n\r\n<p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using &#39;Content here, content here&#39;, making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for &#39;lorem ipsum&#39; will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>', 0, 'C', '1', '2023-01-03 14:30:36', '2023-01-03 14:30:36'),
-(2, 'Children', 'children', NULL, NULL, '1672776707.png', NULL, NULL, '<p>ssfs</p>', 1, 'C', '1', '2023-01-03 14:41:37', '2023-01-03 14:41:37'),
-(3, 'Test Account', 'test-account', 'file_example_MP3_5MG.mp3', '1672779039.mp3', '1672779029.png', '23.34', 12, '<h2>What is Lorem Ipsum?</h2>\r\n\r\n<p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\r\n\r\n<h2>Why do we use it?</h2>\r\n\r\n<p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using &#39;Content here, content here&#39;, making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for &#39;lorem ipsum&#39; will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>', 2, 'F', '1', '2023-01-03 14:45:30', '2023-01-03 15:20:19');
+INSERT INTO `categories` (`id`, `slug`, `name`, `image`, `parent`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'adventure', 'Adventure', '1673384002.png', 0, '1', '2023-01-10 15:23:12', '2023-01-10 15:23:12'),
+(2, 'comedy', 'Comedy', NULL, 0, '1', '2023-01-10 15:23:54', '2023-01-10 15:23:54'),
+(3, 'children', 'Children', NULL, 0, '1', '2023-01-10 15:43:10', '2023-01-10 15:43:10');
 
 -- --------------------------------------------------------
 
@@ -383,7 +392,10 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (5, '2022_12_24_074558_create_states_table', 1),
 (6, '2022_12_24_082749_create_users_table', 1),
 (7, '2022_12_26_171855_create_categories_table', 2),
-(8, '2022_12_26_195430_create_cache_table', 3);
+(8, '2022_12_26_195430_create_cache_table', 3),
+(15, '2023_01_10_190307_create_categories_table', 4),
+(17, '2023_01_10_192442_create_shows_table', 4),
+(18, '2023_01_10_190910_create_audio_files_table', 5);
 
 -- --------------------------------------------------------
 
@@ -414,6 +426,36 @@ CREATE TABLE `personal_access_tokens` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `shows`
+--
+
+CREATE TABLE `shows` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `category_id` bigint(20) UNSIGNED NOT NULL,
+  `title` varchar(255) DEFAULT NULL,
+  `image` varchar(255) DEFAULT NULL,
+  `description` longtext DEFAULT NULL,
+  `no_of_episodes` int(11) DEFAULT NULL,
+  `no_of_mp3_cds` int(11) DEFAULT NULL,
+  `instant_download_price` decimal(12,2) DEFAULT NULL,
+  `mp3_cd_price` decimal(12,2) DEFAULT NULL,
+  `sample_file_original_name` varchar(255) DEFAULT NULL,
+  `sample_file` varchar(255) DEFAULT NULL,
+  `status` enum('0','1','3') NOT NULL DEFAULT '1' COMMENT '0=active,1=active,3=deleted	',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `shows`
+--
+
+INSERT INTO `shows` (`id`, `category_id`, `title`, `image`, `description`, `no_of_episodes`, `no_of_mp3_cds`, `instant_download_price`, `mp3_cd_price`, `sample_file_original_name`, `sample_file`, `status`, `created_at`, `updated_at`) VALUES
+(1, 1, 'The adventure', '1673394270.png', '<p>lorem</p>', 12, 2, '20.00', '25.00', NULL, '1673394275.mp3', '1', '2023-01-10 18:14:20', '2023-01-10 18:14:20');
 
 -- --------------------------------------------------------
 
@@ -4589,13 +4631,20 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `user_type`, `first_name`, `last_name`, `email`, `phone`, `street_address`, `address_line_2`, `zip_code`, `city`, `country_id`, `state_id`, `email_verified_at`, `password`, `remember_token`, `status`, `created_at`, `updated_at`) VALUES
-(2, 1, 'Super', 'Admin', 'admin@onesmedia.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-12-24 03:15:38', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'x0WVa7AVyKbVwMJs4AFKtVqs1LCPSLzMZ4UfDRcySCdbfU67VoGNV9oEvnNy', '1', '2022-12-24 03:15:38', '2022-12-24 03:15:38'),
+(2, 1, 'Super', 'Admin', 'admin@onesmedia.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-12-24 03:15:38', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'LO2B758GqBg5ugbvUwE2jPdtxS5L4mfXn8twkz6YFUSQzCNnNczkr1QzlcsC', '1', '2022-12-24 03:15:38', '2022-12-24 03:15:38'),
 (5, 2, 'VIJI', 'TESTADAIR', 'viji.testadair@gmail.com', '7485321553', 'QUEENS QUAY W', NULL, 'M5V3M8', 'TORONTO', 89, 1511, NULL, '$2y$10$Pid50wkQeVYxOCj6kWDH.elp9pUt.KI.YjQWpvnUbAIUQmcofg.8G', NULL, '1', '2022-12-24 09:54:26', '2022-12-24 10:13:23'),
 (6, 2, 'Test', 'Account', 'testaccount@screen2crush.com', '7885748581', 'Kolkata', '05', '714714', 'Kolkata', 4, 166, NULL, '$2y$10$GJNJWJRCuZx/.FueHVXwNu4tFoTNxT8CdQR.21c7VR1nbmnFqO0hG', NULL, '1', '2022-12-24 10:14:44', '2022-12-24 10:14:44');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `audio_files`
+--
+ALTER TABLE `audio_files`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `audio_files_shows_id_foreign` (`shows_id`);
 
 --
 -- Indexes for table `cache`
@@ -4610,9 +4659,9 @@ ALTER TABLE `cache_locks`
   ADD PRIMARY KEY (`key`);
 
 --
--- Indexes for table `category_and_products`
+-- Indexes for table `categories`
 --
-ALTER TABLE `category_and_products`
+ALTER TABLE `categories`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -4649,6 +4698,13 @@ ALTER TABLE `personal_access_tokens`
   ADD KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`);
 
 --
+-- Indexes for table `shows`
+--
+ALTER TABLE `shows`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `shows_category_id_foreign` (`category_id`);
+
+--
 -- Indexes for table `states`
 --
 ALTER TABLE `states`
@@ -4670,9 +4726,15 @@ ALTER TABLE `users`
 --
 
 --
--- AUTO_INCREMENT for table `category_and_products`
+-- AUTO_INCREMENT for table `audio_files`
 --
-ALTER TABLE `category_and_products`
+ALTER TABLE `audio_files`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `categories`
+--
+ALTER TABLE `categories`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
@@ -4691,13 +4753,19 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `shows`
+--
+ALTER TABLE `shows`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `states`
@@ -4714,6 +4782,18 @@ ALTER TABLE `users`
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `audio_files`
+--
+ALTER TABLE `audio_files`
+  ADD CONSTRAINT `audio_files_shows_id_foreign` FOREIGN KEY (`shows_id`) REFERENCES `shows` (`id`);
+
+--
+-- Constraints for table `shows`
+--
+ALTER TABLE `shows`
+  ADD CONSTRAINT `shows_category_id_foreign` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`);
 
 --
 -- Constraints for table `states`
