@@ -37,9 +37,8 @@ class ShowManage extends Controller
                         $sampleFileOriginalName = (time()+15).'.'.$request->file('sample_file')->getClientOriginalName();
                         $request->file('sample_file')->move(public_path('uploads/categories/'.($categoryRecord->slug)), $sampleFile);
                     endif;
-                    
                     $showInserted = Shows::create([
-                        'category_id'                       => (string)$request->input('categoryId'),
+                        'category_id'                       => $request->input('categoryId'),
                         "title"                             => $request->input('title'),
                         "image"                             => $image,
                         "description"                       => $request->input('description'),
@@ -49,8 +48,8 @@ class ShowManage extends Controller
                         "mp3_cd_price"                      => $request->input('mp3_cd_price'),
                         "sample_file"                       => $sampleFile,
                         "sample_file_original_name"         => $sampleFileOriginalName
-                    ])->toSql();
-                    dd($showInserted);
+                    ]);
+                    // dd($showInserted);
                     // dd(\DB::getQueryLog());
 
                     $audioFiles = [];
