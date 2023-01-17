@@ -25,7 +25,7 @@
                   <tr>
                      <th>SL. No.</th>
                      <th>Name</th>
-                     <th>Image</th>
+                     {{-- <th>Image</th> --}}
                      <th>No. Of Shows</th>
                      <th>Status</th>
                      <th>Action</th>
@@ -78,7 +78,7 @@
             columns: [
                  { data: 'id' },
                  { data: 'name' },
-                 { data: 'image' },
+               //   { data: 'image' },
                  { data: 'total_shows'},
                  { data: 'status' },
                  { data: 'action' }

@@ -11,8 +11,8 @@
       </div>
       <div class="col-md-12">
          <div class="main-card  p-3 card">
-            <div class="card-header mb-3">
-               Category/Product Add                                   
+            <div class="card-header mb-3">                                  
+               Add Show For Category : {{ $categoryRecord->name }}                                
             </div>
             <form class="adminFrm" data-action="category/show-list" method="post">
                @csrf

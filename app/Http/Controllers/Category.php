@@ -54,7 +54,7 @@ class Category extends Controller
                     $updateData = [
                         "name"              => $request->input('name'),
                         'slug'              => Str::slug($request->input('name')),
-                        "image"             => $image
+                        // "image"             => $image
                     ];
                     if($request->hasFile('image')):
                         $updateData['image'] = $image= (time()+10).'.'.$request->file('image')->extension();

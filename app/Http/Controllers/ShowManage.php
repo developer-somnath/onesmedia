@@ -88,14 +88,14 @@ class ShowManage extends Controller
                     $image = NULL;
                     if($request->hasFile('image')):
                         $updateData['image'] = (time()+10).'.'.$request->file('image')->extension();
-                        $request->file('image')->move(public_path('uploads/categories/'.($categoryRecord->slug)), $image);
+                        $request->file('image')->move(public_path('uploads/categories/'.($categoryRecord->slug)), $updateData['image']);
                     endif;
                     $sampleFile = NULL;
                     $sampleFileOriginalName = NULL;
                     if($request->hasFile('sample_file')):
                         $updateData['sample_file'] = (time()+15).'.'.$request->file('sample_file')->extension();
                         $updateData['sample_file_original_name'] = $request->file('sample_file')->getClientOriginalName();
-                        $request->file('sample_file')->move(public_path('uploads/categories/'.($categoryRecord->slug)), $sampleFile);
+                        $request->file('sample_file')->move(public_path('uploads/categories/'.($categoryRecord->slug)), $updateData['sample_file']);
                     endif;
                     // dd($updateData);
                     Shows::find($request->input('updateId'))->update($updateData);
@@ -127,8 +127,10 @@ class ShowManage extends Controller
                 ]);
             endif;
         endif;
+        $categoryRecord=Categories::find($request->input('categoryId'));
+
         $title="Categories/Shows";
-        return view('pages.show.list',compact('title'));
+        return view('pages.show.list',compact('title','categoryRecord'));
     }
     public function ajaxDataTable(Request $request)
     {
@@ -189,7 +191,7 @@ class ShowManage extends Controller
                  ]);
         endif;
     }
-    public function add($id='',Request $request)
+    public function add($id='')
     {
         if(!empty($id)):
             $title="Show Edit";
@@ -198,7 +200,7 @@ class ShowManage extends Controller
             $title="Show Add";
             $oldData = NULL;
         endif;
-        $categoryRecord=Categories::find($request->input('categoryId'));
+        $categoryRecord=Categories::find($_REQUEST['categoryId']);
         return view('pages.show.add',compact('oldData','title','categoryRecord'));
     }
 }

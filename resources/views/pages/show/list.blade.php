@@ -17,7 +17,7 @@
       <div class="col-md-12">
          <div class="main-card mb-3 card p-3">
             <div class="card-header">
-               Shows List                                   
+               Shows List For Category: {{ $categoryRecord->name }}                                 
             </div>
             <div class="table-responsive">
             <table class="table table-bordered" id="showTable" width="100%" >

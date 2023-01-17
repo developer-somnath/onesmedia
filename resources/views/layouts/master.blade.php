@@ -149,6 +149,12 @@
                            </a>
                         </li>
                         <li>
+                           <a href="{{ route('banner-list') }}">
+                           <i class="fa-solid fa-cart-shopping metismenu-icon"></i>
+                           Banner Management
+                           </a>
+                        </li>
+                        <li>
                            <a href="{{ route('logout') }}">
                            <i class="fa-solid fa-arrow-right-from-bracket metismenu-icon"></i>
                            Logout
