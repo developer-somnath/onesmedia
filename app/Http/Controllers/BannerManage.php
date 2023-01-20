@@ -56,7 +56,7 @@ class BannerManage extends Controller
         endif;
     endif;
     $title="Banner Management";
-    $bannerList=Banner::where('status','1')->get();
+    $bannerList=Banner::where('status','!=','3')->get();
     return view('pages.banner.list',compact('title','bannerList'));
    }
    public function add($id='')
