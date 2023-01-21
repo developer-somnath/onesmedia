@@ -7,6 +7,7 @@ use App\Http\Controllers\UserManage;
 use App\Http\Controllers\Category;
 use App\Http\Controllers\ShowManage;
 use App\Http\Controllers\BannerManage;
+use App\Http\Controllers\Offer;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,6 +46,11 @@ Route::middleware(['auth'])->group(function () {
         Route::match(['get','post'],'list', [BannerManage::class, 'index'])->name('banner-list');
         Route::get('add', [BannerManage::class, 'add'])->name('banner-add');
         Route::get('edit/{id}', [BannerManage::class, 'add'])->name('banner-edit');
+    });
+    Route::prefix('offer')->group(function(){
+        Route::match(['get','post'],'list', [Offer::class, 'index'])->name('offer-list');
+        Route::get('add', [Offer::class, 'add'])->name('offer-add');
+        Route::get('edit/{id}', [Offer::class, 'add'])->name('offer-edit');
     });
     Route::post('generic-status-change-delete', [Authenticate::class, 'genericStatusChange'])->name('generic-status-change-delete');
     Route::post('state-list-by-country-id', [Authenticate::class, 'stateListByCountryId'])->name('state-list-by-country-id');

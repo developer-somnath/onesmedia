@@ -155,6 +155,12 @@
                            </a>
                         </li>
                         <li>
+                           <a href="{{ route('offer-list') }}">
+                           <i class="fa-solid fa-cart-shopping metismenu-icon"></i>
+                           Coupon Management
+                           </a>
+                        </li>
+                        <li>
                            <a href="{{ route('logout') }}">
                            <i class="fa-solid fa-arrow-right-from-bracket metismenu-icon"></i>
                            Logout
