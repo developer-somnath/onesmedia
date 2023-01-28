@@ -157,7 +157,7 @@
                         <li>
                            <a href="{{ route('offer-list') }}">
                            <i class="fa-solid fa-cart-shopping metismenu-icon"></i>
-                           Coupon Management
+                           Sale Management
                            </a>
                         </li>
                         <li>

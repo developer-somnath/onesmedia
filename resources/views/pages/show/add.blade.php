@@ -1,4 +1,6 @@
-
+@push('css')
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+@endpush
 @extends('layouts.master')
 @section('content')
 <div class="app-main__inner">
@@ -43,16 +45,30 @@
                      </div>
                   </div>
                   
-                  <div class="col-md-3">
+                  <div class="col-md-2">
                      <div class="position-relative form-group">
                         <label style="">No. Of Episodes</label>
                         <input name="no_of_episodes" id="no_of_episodes" type="text" class="form-control requiredCheck" placeholder="Enter No. of Episodes" data-check="No. of Episodes" onkeypress="return isNumber()" value="{{!is_null($oldData)?$oldData->no_of_episodes:''}}">
                      </div>
                   </div>
-                  <div class="col-md-3">
+                  <div class="col-md-2">
                      <div class="position-relative form-group">
                         <label style="">No. Of MP3 CDs</label>
                         <input name="no_of_mp3_cds" id="no_of_mp3_cds" type="text" class="form-control requiredCheck" placeholder="Enter No. Of MP3 CDs" data-check="No. Of MP3 CDs" onkeypress="return isNumber()" value="{{!is_null($oldData)?$oldData->no_of_mp3_cds:''}}">
+                     </div>
+                  </div>
+                  <div class="col-md-2">
+                     <div class="position-relative form-group">
+                        <label style="">Published Year</label>
+                        <select name="show_year" id="show_year" class="form-control requiredCheck" data-check="Published Year">
+                           <option value="">-Select Year-</option>
+                           @php 
+                              $dates = range(1910,date('Y'));
+                           @endphp
+                           @foreach ($dates as $d)
+                              <option value="{{ $d }}" {{!is_null($oldData) && ($oldData->show_year == $d)?'selected':''}}>{{ $d }}</option>
+                           @endforeach
+                        </select>
                      </div>
                   </div>
                   <div class="col-md-3">
@@ -108,8 +124,14 @@
 @stop
 @push('scripts')
 <script src="https://cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script type="text/javascript">
 CKEDITOR.replaceClass='ckeditor';
-CKEDITOR.config.allowedContent=true;      
+CKEDITOR.config.allowedContent=true;
+$(document).ready(function() {
+    $('#show_year').select2({
+      placeholder:"Select Year"
+    });
+});     
 </script>
 @endpush

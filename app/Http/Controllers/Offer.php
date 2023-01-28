@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\OfferManagement;
 use Illuminate\Support\Str;
+use App\Models\Shows;
 
 class Offer extends Controller
 {
@@ -24,6 +25,9 @@ class Offer extends Controller
                     
                     OfferManagement::create([
                         "description"       => $request->input('description'),
+                        "type"              => $request->input('type'),
+                        "discount_amount"   => $request->input('discount_amount'),
+                        "applicable_shows"   => implode(',',$request->input('applicable_shows')),
                         "image"             => $image
                     ]);
                     return response()->json([
@@ -35,6 +39,9 @@ class Offer extends Controller
                    
                     $updateData = [
                         "description" => $request->input('description'),
+                        "type"              => $request->input('type'),
+                        "discount_amount"   => $request->input('discount_amount'),
+                        "applicable_shows"   => implode(',',$request->input('applicable_shows')),
                         // "image"             => $image
                     ];
                     if($request->hasFile('image')):
@@ -71,7 +78,8 @@ class Offer extends Controller
             $title="Offer Add";
             $oldData = NULL;
         endif;
-        return view('pages.offer.add',compact('oldData','title'));
+        $showList = Shows::select('id','title')->where('status','!=','3')->get();
+        return view('pages.offer.add',compact('oldData','title','showList'));
     }
 
     

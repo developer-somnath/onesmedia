@@ -17,7 +17,8 @@ class Shows extends Model
         'no_of_mp3_cds', 
         'instant_download_price', 
         'mp3_cd_price', 
-        'sample_file', 
+        'sample_file',
+        'show_year',
         'status'  
     ];
 

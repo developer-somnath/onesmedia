@@ -11,6 +11,9 @@ class OfferManagement extends Model
     protected $fillable = [
         'image',
         'description',
+        'type',
+        'applicable_shows',
+        'discount_amount',
         'status'  
     ];
 }
