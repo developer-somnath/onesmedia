@@ -21,7 +21,9 @@ class CreateOfferManagementTable extends Migration
             $table->string('applicable_categories')->nullable();
             $table->longText('description')->nullable();
             $table->decimal('discount_amount',12,2)->nullable();
-            $table->enum('type', ['1','2'])->default('1')->comment('1=percentage,2=fixed');	
+            $table->enum('type', ['1','2'])->default('1')->comment('1=percentage,2=fixed');
+            $table->date('start_date')->nullable();
+            $table->date('end_date')->nullable();
             $table->enum('status', ['0','1','3'])->default('1')->comment('0=active,1=active,3=deleted');	
             $table->timestamps();
         });
