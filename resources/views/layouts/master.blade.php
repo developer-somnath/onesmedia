@@ -125,37 +125,37 @@
                      <ul class="vertical-nav-menu">
                         <li class="app-sidebar__heading">Dashboard</li>
                         <li>
-                           <a href="{{route('dashboard')}}" class="mm-active">
+                           <a href="{{route('dashboard')}}" class="{{ Request::segment(1)==='dashboard'?'mm-active':'' }}">
                            <i class="fa-solid fa-gauge metismenu-icon"></i>
                            Dashboard
                            </a>
                         </li>
                         <li>
-                           <a href="{{route('user-list')}}">
+                           <a href="{{route('user-list')}}" class="{{ Request::segment(1)==='user'?'mm-active':'' }}">
                            <i class="fa-solid fa-users metismenu-icon"></i>
                            Users
                            </a>
                         </li>
                         <li>
-                           <a href="#">
+                           <a href="#" class="{{ Request::segment(1)==='orders'?'mm-active':'' }}">
                            <i class="fa-solid fa-cart-shopping metismenu-icon"></i>
                            Orders
                            </a>
                         </li>
                         <li>
-                           <a href="{{ route('category-list') }}">
+                           <a href="{{ route('category-list') }}" class="{{ Request::segment(1)==='category'?'mm-active':'' }}">
                            <i class="fa-solid fa-cart-shopping metismenu-icon"></i>
                            Categories/Shows
                            </a>
                         </li>
                         <li>
-                           <a href="{{ route('banner-list') }}">
+                           <a href="{{ route('banner-list') }}" class="{{ Request::segment(1)==='banner'?'mm-active':'' }}">
                            <i class="fa-solid fa-cart-shopping metismenu-icon"></i>
                            Banner Management
                            </a>
                         </li>
                         <li>
-                           <a href="{{ route('offer-list') }}">
+                           <a href="{{ route('offer-list') }}" class="{{ Request::segment(1)==='offer'?'mm-active':'' }}">
                            <i class="fa-solid fa-cart-shopping metismenu-icon"></i>
                            Sale Management
                            </a>
