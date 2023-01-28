@@ -71,7 +71,19 @@
                            @endforelse
                         </select>
                      </div>
-                  </div>              
+                  </div>  
+                  <div class="col-md-3">
+                     <div class="position-relative form-group">
+                        <label style="">Start Date</label>
+                        <input name="start_date" id="start_date" type="Date" class="form-control " data-check="Start Date" value="{{!is_null($oldData)?$oldData->start_date:''}}">
+                     </div>
+                  </div>
+                  <div class="col-md-3">
+                     <div class="position-relative form-group">
+                        <label style="">End date</label>
+                        <input name="end_date" id="end_date" type="date" class="form-control" data-check="End date" value="{{!is_null($oldData)?$oldData->end_date:''}}">
+                     </div>
+                  </div>        
                </div>
                <div class="d-flex align-items-left">
                   <div class="mx-auto">

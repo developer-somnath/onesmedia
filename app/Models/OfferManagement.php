@@ -14,6 +14,8 @@ class OfferManagement extends Model
         'type',
         'applicable_shows',
         'discount_amount',
+        'start_date',
+        'end_date',
         'status'  
     ];
 }

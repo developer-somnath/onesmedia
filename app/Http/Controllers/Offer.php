@@ -28,6 +28,9 @@ class Offer extends Controller
                         "type"              => $request->input('type'),
                         "discount_amount"   => $request->input('discount_amount'),
                         "applicable_shows"   => implode(',',$request->input('applicable_shows')),
+                        "start_date"        => $request->input('start_date'),
+                        "end_date"          => $request->input('end_date'),
+                        "discount_amount"   => $request->input('discount_amount'),
                         "image"             => $image
                     ]);
                     return response()->json([
@@ -41,6 +44,8 @@ class Offer extends Controller
                         "description" => $request->input('description'),
                         "type"              => $request->input('type'),
                         "discount_amount"   => $request->input('discount_amount'),
+                        "start_date"        => $request->input('start_date'),
+                        "end_date"          => $request->input('end_date'),
                         "applicable_shows"   => implode(',',$request->input('applicable_shows')),
                         // "image"             => $image
                     ];
