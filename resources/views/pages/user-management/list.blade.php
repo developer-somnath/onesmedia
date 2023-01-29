@@ -25,7 +25,7 @@
                      <th>Name</th>
                      <th>Email</th>
                      <th>Phone</th>
-                     <th>Streel Address</th>
+                     <th>Street Address</th>
                      <th>Address Line 2</th>
                      <th>Zip Code</th>
                      <th>City</th>

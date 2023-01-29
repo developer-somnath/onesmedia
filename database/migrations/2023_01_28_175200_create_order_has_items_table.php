@@ -15,7 +15,7 @@ class CreateOrderHasItemsTable extends Migration
     {
         Schema::create('order_has_items', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('order_id')->nullable()->constrained('shows');
+            $table->foreignId('order_id')->nullable()->constrained('orders');
             $table->foreignId('item_id')->nullable()->constrained('shows');
             $table->decimal('item_amount',12,2)->nullable();
             $table->decimal('paid_amount',12,2)->nullable();

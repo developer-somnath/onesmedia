@@ -15,7 +15,7 @@ class CreateOrderHasStatusesTable extends Migration
     {
         Schema::create('order_has_statuses', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('order_id')->nullable()->constrained('shows');
+            $table->foreignId('order_id')->nullable()->constrained('orders');
             $table->enum('order_status', ['1','2','3','4'])->default('1')->comment('1=order placed,2=order Shipped,3=complete,4=cancelled');
             $table->timestamps();
         });
