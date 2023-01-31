@@ -68,8 +68,8 @@
                                     <div class="row">
                                         <div class="col-lg-6">
                                             <h3 class="h6">Payment Method</h3>
-                                            <p>Visa -1234 <br> Total: $169,98 <span
-                                                    class="badge bg-success rounded-pill">PAID</span></p>
+                                            <p>Visa -1234 <br> Total: ${{ $details->oder_amount }} <span
+                                                    class="badge {{ $details->payment_status==='P'?"bg-success":"bg-danger" }}  rounded-pill">{{ $details->payment_status==='P'?"PAID":"UNPAID" }}</span></p>
                                         </div>
                                         <div class="col-lg-6">
                                             <h3 class="h6">Billing address</h3>
