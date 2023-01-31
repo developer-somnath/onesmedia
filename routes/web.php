@@ -8,7 +8,7 @@ use App\Http\Controllers\Category;
 use App\Http\Controllers\ShowManage;
 use App\Http\Controllers\BannerManage;
 use App\Http\Controllers\Offer;
-
+use App\Http\Controllers\OrderManage;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -31,6 +31,13 @@ Route::middleware(['auth'])->group(function () {
         Route::get('add', [UserManage::class, 'add'])->name('user-add');
         Route::get('edit/{id}', [UserManage::class, 'add'])->name('user-edit');
         Route::post('get-user-list', [UserManage::class, 'ajaxDataTable'])->name('ajax-user-list');
+    });
+    Route::prefix('order')->group(function(){
+        Route::match(['get','post'],'list', [OrderManage::class, 'index'])->name('order-list');
+        Route::get('add', [OrderManage::class, 'add'])->name('order-add');
+        Route::get('edit/{id}', [OrderManage::class, 'add'])->name('order-edit');
+        Route::get('details/{id}', [OrderManage::class, 'details'])->name('order-details');
+        Route::post('get-order-list', [OrderManage::class, 'ajaxDataTable'])->name('ajax-order-list');
     });
     Route::prefix('category')->group(function(){
         Route::match(['get','post'],'list', [Category::class, 'index'])->name('category-list');

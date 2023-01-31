@@ -17,6 +17,7 @@ class CreateOrderHasItemsTable extends Migration
             $table->id();
             $table->foreignId('order_id')->nullable()->constrained('orders');
             $table->foreignId('item_id')->nullable()->constrained('shows');
+            $table->integer('quantity')->nullable();
             $table->decimal('item_amount',12,2)->nullable();
             $table->decimal('paid_amount',12,2)->nullable();
             $table->decimal('discount_amount',12,2)->nullable();

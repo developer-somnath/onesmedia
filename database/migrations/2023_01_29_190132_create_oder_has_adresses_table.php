@@ -18,8 +18,8 @@ class CreateOderHasAdressesTable extends Migration
             $table->foreignId('order_id')->nullable()->constrained('orders');
             $table->string('first_name')->nullable();
             $table->string('last_name')->nullable();
-            $table->string('email')->unique()->nullable();
-            $table->string('phone')->unique()->nullable();
+            $table->string('email')->nullable();
+            $table->string('phone')->nullable();
             $table->string('street_address')->nullable();
             $table->string('address_line_2')->nullable();
             $table->string('zip_code',100)->nullable();

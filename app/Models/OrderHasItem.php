@@ -8,4 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class OrderHasItem extends Model
 {
     use HasFactory;
+    public function order()
+    {
+        return $this->belongsTo(Order::class, 'user_id');
+    }
+
+    public function show()
+    {
+        return $this->belongsTo(Shows::class, 'id');
+    }
 }

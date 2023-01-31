@@ -17,7 +17,8 @@ class CreateCartsTable extends Migration
             $table->id();
             $table->foreignId('user_id')->nullable()->constrained('users');
             $table->foreignId('item_id')->nullable()->constrained('shows');
-            $table->enum('type', ['1','2'])->default('1')->comment('1=instant download,2=cd');	
+            $table->enum('type', ['1','2'])->default('1')->comment('1=instant download,2=cd');
+            $table->integer('quantity')->nullable();
             $table->timestamps();
         });
     }

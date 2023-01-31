@@ -137,7 +137,7 @@
                            </a>
                         </li>
                         <li>
-                           <a href="#" class="{{ Request::segment(1)==='orders'?'mm-active':'' }}">
+                           <a href="{{ route('order-list') }}" class="{{ Request::segment(1)==='order'?'mm-active':'' }}">
                            <i class="fa-solid fa-cart-shopping metismenu-icon"></i>
                            Orders
                            </a>
