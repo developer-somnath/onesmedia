@@ -12,4 +12,12 @@ class OderHasAdress extends Model
     {
         return $this->belongsTo(Order::class, 'user_id');
     }
+    public function country()
+    {
+        return $this->belongsTo(Countries::class, 'country_id');
+    }
+    public function state()
+    {
+        return $this->belongsTo(States::class, 'state_id');
+    }
 }

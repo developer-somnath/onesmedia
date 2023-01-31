@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class States extends Model
 {
     use HasFactory;
+    
+
+    public function user()
+    {
+        return $this->hasMany(User::class, 'state_id');
+    }
 }

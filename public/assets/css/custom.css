@@ -626,6 +626,27 @@ ul.folder-style li a span {
     font-size: 23px;
     font-weight: 600;
 }
+table.details-t {
+    width: 100%;
+}
+.details-t td {
+    padding-bottom: 12px;
+}
+table.details-t h4 {
+    font-size: 13px;
+    margin: 0;
+    color: #000;
+}
+
+.order-details h5 {
+    margin: 0;
+    font-size: 14px;
+    color: #000;
+    font-weight: 700;
+}
+.details-t td:last-child {
+    text-align: right;
+}
 /*.vertical-nav-menu i {*/
 /*    text-align: center;*/
 /*    width: 34px;*/

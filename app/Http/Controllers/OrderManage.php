@@ -11,8 +11,6 @@ class OrderManage extends Controller
 {
     public function index(Request $request)
     {
-        
-
         $title="Orders";
         return view('pages.order.list',compact('title'));
     }
@@ -54,7 +52,7 @@ class OrderManage extends Controller
                 else:
                     $shippingStatus='<span class="badge badge-danger">Pending</a>';
                 endif;
-                $action = '<a href="'.(url("category/show-edit/".$value->id."?categoryId=".$request->input('categoryId'))).'" class="btn btn-info"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                $action = '<a href="'.(url("order/details/".$value->id)).'" class="btn btn-info"><i class="fa fa-eye" aria-hidden="true"></i></a>
                 <a href="javascript:void(0)" id="'.($value->id).'" data-table="orders" data-status="3" data-key="id" data-id="'.($value->id).'" class="btn btn-danger change-status"><i class="fa fa-trash" aria-hidden="true"></i></a>';
                 $image='';
                 
@@ -77,5 +75,12 @@ class OrderManage extends Controller
                     'data'=>$tempArr,
                  ]);
         endif;
+    }
+
+    public function details($id)
+    {        
+        $title="Order Details";
+        $details = Order::find($id);
+        return view('pages.order.details',compact('details','title'));
     }
 }

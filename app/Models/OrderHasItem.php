@@ -15,6 +15,6 @@ class OrderHasItem extends Model
 
     public function show()
     {
-        return $this->belongsTo(Shows::class, 'id');
+        return $this->belongsTo(Shows::class, 'item_id');
     }
 }
