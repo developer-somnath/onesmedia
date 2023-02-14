@@ -20,7 +20,6 @@
                @csrf
                <input type="hidden" name="updateId" value="{{!is_null($oldData)?$oldData->id:''}}">
                <div class="form-row">
-                  
                   <div class="col-md-6">
                      <div class="position-relative form-group">
                         <label style="">Background Image</label>
@@ -31,21 +30,6 @@
                         @endif
                      </div>
                   </div> 
-                  <div class="col-md-3">
-                     <div class="position-relative form-group">
-                        <label style="">Discount Type</label>
-                        <select class="form-control requiredCheck" id="type" name="type" data-check="Discount Type">
-                           <option value="1" {{!is_null($oldData) && ($oldData->type==1)?'selected':''}}>Percentage</option>
-                           <option value="2" {{!is_null($oldData) && ($oldData->type==2)?'selected':''}}>Fixed</option>
-                        </select>                        
-                     </div>
-                  </div> 
-                  <div class="col-md-3">
-                     <div class="position-relative form-group">
-                        <label style="">Discount Amount</label>
-                        <input name="discount_amount" id="discount_amount" type="text" class="form-control requiredCheck checkDecimal" data-check="Discount Amount" value="{{!is_null($oldData)?$oldData->discount_amount:''}}">
-                     </div>
-                  </div> 
                   <div class="col-md-12">
                      <div class="position-relative form-group">
                         <label style="">Description</label>
@@ -53,37 +37,7 @@
 
                      </div>
                   </div>
-                  <div class="col-md-6">
-                     <div class="position-relative form-group">
-                        <label style="">Apply On Shows</label>
-                        @php
-                           $existingShows= [];
-                           if(!is_null($oldData) && !empty($oldData->applicable_shows)):
-                              $existingShows = explode(',',$oldData->applicable_shows);
-                           endif;
-                        @endphp
-                        <select name="applicable_shows[]" id="applicable_shows" class="form-control" data-check="Apply On Shows" multiple>
-                           <option value="">-Select Year-</option>
-                           @forelse ($showList as $show)
-                              <option value="{{ $show->id }}" {{ in_array($show->id,$existingShows)?'selected':'' }}>{{ $show->title }}</option>
-                           @empty
-                              <option value="">No show found!</option>
-                           @endforelse
-                        </select>
-                     </div>
-                  </div>  
-                  <div class="col-md-3">
-                     <div class="position-relative form-group">
-                        <label style="">Start Date</label>
-                        <input name="start_date" id="start_date" type="Date" class="form-control " data-check="Start Date" value="{{!is_null($oldData)?$oldData->start_date:''}}">
-                     </div>
-                  </div>
-                  <div class="col-md-3">
-                     <div class="position-relative form-group">
-                        <label style="">End date</label>
-                        <input name="end_date" id="end_date" type="date" class="form-control" data-check="End date" value="{{!is_null($oldData)?$oldData->end_date:''}}">
-                     </div>
-                  </div>        
+                       
                </div>
                <div class="d-flex align-items-left">
                   <div class="mx-auto">

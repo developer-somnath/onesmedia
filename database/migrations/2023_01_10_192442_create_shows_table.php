@@ -25,7 +25,8 @@ class CreateShowsTable extends Migration
             $table->decimal('mp3_cd_price',12,2)->nullable();
             $table->string('sample_file_original_name')->nullable();
             $table->string('sample_file')->nullable();
-            $table->date('show_year')->nullable();
+            $table->string('show_start_year',50)->nullable();
+            $table->string('show_end_year',50)->nullable();
             $table->enum('status', ['0','1','3'])->default('1')->comment('0=active,1=active,3=deleted');	
             $table->timestamps();
         });

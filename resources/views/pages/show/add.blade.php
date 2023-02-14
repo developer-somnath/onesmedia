@@ -59,14 +59,28 @@
                   </div>
                   <div class="col-md-2">
                      <div class="position-relative form-group">
-                        <label style="">Published Year</label>
-                        <select name="show_year" id="show_year" class="form-control requiredCheck" data-check="Published Year">
+                        <label style="">Show Start Year</label>
+                        <select name="show_start_year" id="show_start_year" class="form-control requiredCheck" data-check="Published Year">
                            <option value="">-Select Year-</option>
                            @php 
                               $dates = range(1910,date('Y'));
                            @endphp
                            @foreach ($dates as $d)
-                              <option value="{{ $d }}" {{!is_null($oldData) && ($oldData->show_year == $d)?'selected':''}}>{{ $d }}</option>
+                              <option value="{{ $d }}" {{!is_null($oldData) && ($oldData->show_start_year == $d)?'selected':''}}>{{ $d }}</option>
+                           @endforeach
+                        </select>
+                     </div>
+                  </div>
+                  <div class="col-md-2">
+                     <div class="position-relative form-group">
+                        <label style="">Show End Year</label>
+                        <select name="show_end_year" id="show_end_year" class="form-control requiredCheck" data-check="Published Year">
+                           <option value="">-Select Year-</option>
+                           @php 
+                              $dates = range(1910,date('Y'));
+                           @endphp
+                           @foreach ($dates as $d)
+                              <option value="{{ $d }}" {{!is_null($oldData) && ($oldData->show_end_year == $d)?'selected':''}}>{{ $d }}</option>
                            @endforeach
                         </select>
                      </div>
@@ -129,7 +143,7 @@
 CKEDITOR.replaceClass='ckeditor';
 CKEDITOR.config.allowedContent=true;
 $(document).ready(function() {
-    $('#show_year').select2({
+    $('#show_start_year').select2({
       placeholder:"Select Year"
     });
 });     

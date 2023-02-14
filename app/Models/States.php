@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class States extends Model
 {
     use HasFactory;
-    
 
     public function user()
     {

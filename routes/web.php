@@ -9,6 +9,7 @@ use App\Http\Controllers\ShowManage;
 use App\Http\Controllers\BannerManage;
 use App\Http\Controllers\Offer;
 use App\Http\Controllers\OrderManage;
+use App\Http\Controllers\SalesManagement;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -58,6 +59,16 @@ Route::middleware(['auth'])->group(function () {
         Route::match(['get','post'],'list', [Offer::class, 'index'])->name('offer-list');
         Route::get('add', [Offer::class, 'add'])->name('offer-add');
         Route::get('edit/{id}', [Offer::class, 'add'])->name('offer-edit');
+    });
+    Route::prefix('category-sale')->group(function(){
+        Route::match(['get','post'],'list', [SalesManagement::class, 'index'])->name('category-sale-list');
+        Route::get('add', [SalesManagement::class, 'add'])->name('category-sale-add');
+        Route::get('edit/{id}', [SalesManagement::class, 'add'])->name('category-sale-edit');
+    });
+    Route::prefix('today-sale')->group(function(){
+        Route::match(['get','post'],'list', [SalesManagement::class, 'todaySales'])->name('today-sale-list');
+        Route::get('add', [SalesManagement::class, 'todaySaleAdd'])->name('today-sale-add');
+        Route::get('edit/{id}', [SalesManagement::class, 'todaySaleAdd'])->name('today-sale-edit');
     });
     Route::post('generic-status-change-delete', [Authenticate::class, 'genericStatusChange'])->name('generic-status-change-delete');
     Route::post('state-list-by-country-id', [Authenticate::class, 'stateListByCountryId'])->name('state-list-by-country-id');

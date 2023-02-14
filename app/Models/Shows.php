@@ -18,7 +18,8 @@ class Shows extends Model
         'instant_download_price', 
         'mp3_cd_price', 
         'sample_file',
-        'show_year',
+        'show_start_year',
+        'show_end_year',
         'status'  
     ];
 

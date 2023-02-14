@@ -157,7 +157,19 @@
                         <li>
                            <a href="{{ route('offer-list') }}" class="{{ Request::segment(1)==='offer'?'mm-active':'' }}">
                            <i class="fa-solid fa-cart-shopping metismenu-icon"></i>
-                           Sale Management
+                           Offer Information
+                           </a>
+                        </li>
+                        <li>
+                           <a href="{{ route('category-sale-list') }}" class="{{ Request::segment(1)==='category-sale'?'mm-active':'' }}">
+                           <i class="fa-solid fa-cart-shopping metismenu-icon"></i>
+                           Category Sale Management
+                           </a>
+                        </li>
+                        <li>
+                           <a href="{{ route('today-sale-list') }}" class="{{ Request::segment(1)==='today-sale'?'mm-active':'' }}">
+                           <i class="fa-solid fa-cart-shopping metismenu-icon"></i>
+                           Today Sale Management
                            </a>
                         </li>
                         <li>

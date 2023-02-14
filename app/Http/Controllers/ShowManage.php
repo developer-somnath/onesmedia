@@ -46,7 +46,8 @@ class ShowManage extends Controller
                         "no_of_mp3_cds"                     => $request->input('no_of_mp3_cds'),
                         "instant_download_price"            => $request->input('instant_download_price'),
                         "mp3_cd_price"                      => $request->input('mp3_cd_price'),
-                        "show_year"                         => $request->input('show_year'),
+                        "show_start_year"                        => $request->input('show_start_year'),
+                        "show_end_year"                         => $request->input('show_end_year'),
                         "sample_file"                       => $sampleFile,
                         "sample_file_original_name"         => $sampleFileOriginalName
                     ]);
@@ -84,7 +85,8 @@ class ShowManage extends Controller
                         "no_of_mp3_cds"                     => $request->input('no_of_mp3_cds'),
                         "instant_download_price"            => $request->input('instant_download_price'),
                         "mp3_cd_price"                      => $request->input('mp3_cd_price'),
-                        "show_year"                         => $request->input('show_year'),
+                        "show_start_year"                        => $request->input('show_start_year'),
+                        "show_end_year"                         => $request->input('show_end_year'),
                         
                     ];
                     $image = NULL;

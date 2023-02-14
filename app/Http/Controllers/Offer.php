@@ -25,12 +25,6 @@ class Offer extends Controller
                     
                     OfferManagement::create([
                         "description"       => $request->input('description'),
-                        "type"              => $request->input('type'),
-                        "discount_amount"   => $request->input('discount_amount'),
-                        "applicable_shows"   => implode(',',$request->input('applicable_shows')),
-                        "start_date"        => $request->input('start_date'),
-                        "end_date"          => $request->input('end_date'),
-                        "discount_amount"   => $request->input('discount_amount'),
                         "image"             => $image
                     ]);
                     return response()->json([
@@ -42,11 +36,6 @@ class Offer extends Controller
                    
                     $updateData = [
                         "description" => $request->input('description'),
-                        "type"              => $request->input('type'),
-                        "discount_amount"   => $request->input('discount_amount'),
-                        "start_date"        => $request->input('start_date'),
-                        "end_date"          => $request->input('end_date'),
-                        "applicable_shows"   => implode(',',$request->input('applicable_shows')),
                         // "image"             => $image
                     ];
                     if($request->hasFile('image')):
@@ -83,8 +72,7 @@ class Offer extends Controller
             $title="Offer Add";
             $oldData = NULL;
         endif;
-        $showList = Shows::select('id','title')->where('status','!=','3')->get();
-        return view('pages.offer.add',compact('oldData','title','showList'));
+        return view('pages.offer.add',compact('oldData','title'));
     }
 
     
