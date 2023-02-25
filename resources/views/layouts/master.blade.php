@@ -173,6 +173,24 @@
                            </a>
                         </li>
                         <li>
+                           <a href="{{ route('shipping-cost-add') }}" class="{{ Request::segment(1)==='shipping-cost'?'mm-active':'' }}">
+                           <i class="fa-solid fa-cart-shopping metismenu-icon"></i>
+                           Shipping Cost Management
+                           </a>
+                        </li>
+                        <li>
+                           <a href="{{ route('sample-file-list') }}" class="{{ Request::segment(1)==='sample-file'?'mm-active':'' }}">
+                           <i class="fa-solid fa-cart-shopping metismenu-icon"></i>
+                           Sample File Management
+                           </a>
+                        </li>
+                        <li>
+                           <a href="{{ route('free-downloads-list') }}" class="{{ Request::segment(1)==='free-downloads'?'mm-active':'' }}">
+                           <i class="fa-solid fa-cart-shopping metismenu-icon"></i>
+                           Free Downloads Management
+                           </a>
+                        </li>
+                        <li>
                            <a href="{{ route('logout') }}">
                            <i class="fa-solid fa-arrow-right-from-bracket metismenu-icon"></i>
                            Logout

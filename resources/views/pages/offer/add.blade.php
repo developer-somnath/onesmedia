@@ -1,6 +1,3 @@
-@push('css')
-<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-@endpush
 @extends('layouts.master')
 @section('content')
 <div class="app-main__inner">
@@ -53,13 +50,8 @@
 @stop
 @push('scripts')
 <script src="https://cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script type="text/javascript">
 CKEDITOR.replaceClass='ckeditor';
 CKEDITOR.config.allowedContent=true;
-$(document).ready(function() {
-    $('#applicable_shows').select2();
-});
-
 </script>
 @endpush

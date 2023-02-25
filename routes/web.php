@@ -10,6 +10,9 @@ use App\Http\Controllers\BannerManage;
 use App\Http\Controllers\Offer;
 use App\Http\Controllers\OrderManage;
 use App\Http\Controllers\SalesManagement;
+use App\Http\Controllers\ShippingManage;
+use App\Http\Controllers\SampleFileManage;
+use App\Http\Controllers\FreeDownloadManage;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -55,6 +58,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('add', [BannerManage::class, 'add'])->name('banner-add');
         Route::get('edit/{id}', [BannerManage::class, 'add'])->name('banner-edit');
     });
+    
     Route::prefix('offer')->group(function(){
         Route::match(['get','post'],'list', [Offer::class, 'index'])->name('offer-list');
         Route::get('add', [Offer::class, 'add'])->name('offer-add');
@@ -70,6 +74,23 @@ Route::middleware(['auth'])->group(function () {
         Route::get('add', [SalesManagement::class, 'todaySaleAdd'])->name('today-sale-add');
         Route::get('edit/{id}', [SalesManagement::class, 'todaySaleAdd'])->name('today-sale-edit');
     });
+    Route::prefix('shipping-cost')->group(function(){
+        Route::post('save', [ShippingManage::class, 'index'])->name('shipping-cost-save');
+        Route::get('add', [ShippingManage::class, 'add'])->name('shipping-cost-add');
+    });
+    Route::prefix('sample-file')->group(function(){
+        Route::get('ajax-sample-file-list', [SampleFileManage::class, 'ajaxDataTable'])->name('ajax-sample-file-list');
+        Route::match(['get','post'],'list', [SampleFileManage::class, 'index'])->name('sample-file-list');
+        Route::get('add', [SampleFileManage::class, 'add'])->name('sample-file-add');
+        Route::get('edit/{id}', [SampleFileManage::class, 'add'])->name('sample-file-edit');
+    });
+    Route::prefix('free-downloads')->group(function(){
+        Route::get('ajax-free-downloads-list', [FreeDownloadManage::class, 'ajaxDataTable'])->name('ajax-free-downloads-list');
+        Route::match(['get','post'],'list', [FreeDownloadManage::class, 'index'])->name('free-downloads-list');
+        Route::get('add', [FreeDownloadManage::class, 'add'])->name('free-downloads-add');
+        Route::get('edit/{id}', [FreeDownloadManage::class, 'add'])->name('free-downloads-edit');
+    });
+    
     Route::post('generic-status-change-delete', [Authenticate::class, 'genericStatusChange'])->name('generic-status-change-delete');
     Route::post('state-list-by-country-id', [Authenticate::class, 'stateListByCountryId'])->name('state-list-by-country-id');
 });
