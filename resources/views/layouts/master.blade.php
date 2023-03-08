@@ -191,6 +191,12 @@
                            </a>
                         </li>
                         <li>
+                           <a href="{{ route('transactions-list') }}" class="{{ Request::segment(1)==='transactions'?'mm-active':'' }}">
+                           <i class="fa-solid fa-cart-shopping metismenu-icon"></i>
+                           Transactions Management
+                           </a>
+                        </li>
+                        <li>
                            <a href="{{ route('logout') }}">
                            <i class="fa-solid fa-arrow-right-from-bracket metismenu-icon"></i>
                            Logout

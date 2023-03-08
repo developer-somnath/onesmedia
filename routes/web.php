@@ -13,6 +13,7 @@ use App\Http\Controllers\SalesManagement;
 use App\Http\Controllers\ShippingManage;
 use App\Http\Controllers\SampleFileManage;
 use App\Http\Controllers\FreeDownloadManage;
+use App\Http\Controllers\TransactionManage;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -93,5 +94,10 @@ Route::middleware(['auth'])->group(function () {
     
     Route::post('generic-status-change-delete', [Authenticate::class, 'genericStatusChange'])->name('generic-status-change-delete');
     Route::post('state-list-by-country-id', [Authenticate::class, 'stateListByCountryId'])->name('state-list-by-country-id');
+    
+    Route::prefix('transactions')->group(function(){
+        Route::get('list', [TransactionManage::class, 'index'])->name('transactions-list');
+        Route::post('ajax-transaction-list', [TransactionManage::class, 'ajaxDataTable'])->name('ajax-transaction-list');
+    });
 });
 
